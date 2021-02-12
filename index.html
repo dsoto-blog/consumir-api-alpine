@@ -39,6 +39,13 @@
       <a href="">TheCocktailDB</a>, que mejor api para consumir.🍹 🎉
     </p>
     <p>
+      Este ejemplo es parte del post
+      <a href="https://dsoto.dev/posts/alpine-example/"
+        >Alpine el nuevo jQuery reactivo</a
+      >.
+      <a href="https://github.com/dsoto-blog/consumir-api-alpine">Github</a>
+    </p>
+    <p>
       <label for="input__search">Search</label>
       <input
         id="input__search"
@@ -46,12 +53,16 @@
         placeholder="Enter Search Term"
         x-model="q"
         x-on:input="
-            fetch( 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + q , {
-                method: 'GET',
-                mode: 'cors',
-            })
-            .then( response => response.json() )
-            .then( json => cocktails = json.drinks )        
+            if (q!=='') {
+                fetch( 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + q , {
+                    method: 'GET',
+                    mode: 'cors',
+                })
+                .then( response => response.json() )
+                .then( json => cocktails = json.drinks )        
+            } else {
+                cocktails = []
+            }
         "
       />
     </p>
